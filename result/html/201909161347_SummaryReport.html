@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Load Test Results</title>
+<style type="text/css">
+                body { font:normal 68% verdana,arial,helvetica; color:#000000; }
+                table tr td, table tr th { font-size: 68%; }
+                table.details tr th { color: #ffffff; font-weight: bold; text-align:center; background:#2674a6; white-space: pre-wrap; }
+                table.details tr td { background:#eeeee0; white-space: pre-wrap; }
+                h1 { margin: 0px 0px 5px; font: 165% verdana,arial,helvetica }
+                h2 { margin-top: 1em; margin-bottom: 0.5em; font: bold 125% verdana,arial,helvetica }
+                h3 { margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica }
+                .Failure { font-weight:bold; color:red; }
+                img { border-width: 0px; }
+                .expand_link { position: absolute; right: 0px; width: 27px; top: 1px; height: 27px; }
+                .page_details { display: none; }
+                .page_details_expanded { display: block; display/* hide this definition from  IE5/6 */: table-row; }
+                .key { min-width: 108px; width: 15%; }
+                .detail, #tdetail { display: none; }
+            </style>
+<script language="JavaScript">
+                function toggle_details(details_id) {
+                    var objImg = document.getElementById(details_id+"_image");
+                    var objTable = document.getElementById(details_id);
+                    if(objImg.alt == "collapse") {
+                        objImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEALQADQANam36RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wDDQ0hOymuu20AAAL5dEVYdENvbW1lbnQATGljZW5zZWQgdG8gdGhlIEFwYWNoZSBTb2Z0d2FyZSBGb3VuZGF0aW9uIChBU0YpIHVuZGVyIG9uZSBvciBtb3JlCmNvbnRyaWJ1dG9yIGxpY2Vuc2UgYWdyZWVtZW50cy4gIFNlZSB0aGUgTk9USUNFIGZpbGUgZGlzdHJpYnV0ZWQgd2l0aAp0aGlzIHdvcmsgZm9yIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24gcmVnYXJkaW5nIGNvcHlyaWdodCBvd25lcnNoaXAuClRoZSBBU0YgbGljZW5zZXMgdGhpcyBmaWxlIHRvIFlvdSB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wCih0aGUgIkxpY2Vuc2UiKTsgeW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoCnRoZSBMaWNlbnNlLiAgWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0CgogICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjAKClVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmUKZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gIkFTIElTIiBCQVNJUywKV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuClNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmQKbGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuhUUAtwAAAC1JREFUOMtjVCtZ9p+BAsDEQCEYNYAKBrAgc252RxKlSb10OfVcwDiakIaDAQDXcQefpMw+jAAAAABJRU5ErkJggg==";
+                        objImg.alt = "expand";
+                        objTable.className = "page_details_expanded";
+                    } else {
+                        objImg.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEALQADQANam36RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wDDQ0cLbeSRoIAAAL5dEVYdENvbW1lbnQATGljZW5zZWQgdG8gdGhlIEFwYWNoZSBTb2Z0d2FyZSBGb3VuZGF0aW9uIChBU0YpIHVuZGVyIG9uZSBvciBtb3JlCmNvbnRyaWJ1dG9yIGxpY2Vuc2UgYWdyZWVtZW50cy4gIFNlZSB0aGUgTk9USUNFIGZpbGUgZGlzdHJpYnV0ZWQgd2l0aAp0aGlzIHdvcmsgZm9yIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24gcmVnYXJkaW5nIGNvcHlyaWdodCBvd25lcnNoaXAuClRoZSBBU0YgbGljZW5zZXMgdGhpcyBmaWxlIHRvIFlvdSB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wCih0aGUgIkxpY2Vuc2UiKTsgeW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoCnRoZSBMaWNlbnNlLiAgWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0CgogICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjAKClVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmUKZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gIkFTIElTIiBCQVNJUywKV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuClNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmQKbGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuhUUAtwAAADtJREFUOMtjVCtZ9p+BAsDEQCGgrQE3uyMZbnZHDmUvEAMYkaORkH9hQL10OY1cgC0W0G0c7rEwNL0AAJeCEpM4iWKGAAAAAElFTkSuQmCC";
+                        objImg.alt = "collapse";
+                        objTable.className = "page_details";
+                        var arrTable = document.getElementsByClassName("detail");
+                        for (var i=0; i<arrTable.length; i++) {
+                            arrTable[i].style.display = "none";
+                        }
+                    }
+                };
+                function toggle_detail(detail_id) {
+                    var objTitle = document.getElementById("tdetail");
+                    var arrTable = document.getElementsByClassName("detail");
+                    for (var i=0; i<arrTable.length; i++) {
+                        var table = arrTable[i];
+                        if (table.id != detail_id) {
+                            table.style.display = "none";
+                        } else {
+                            if (table.style.display == "none" || table.style.display == "") {
+                                table.style.display = "table";
+                                objTitle.style.display = "block";
+                            } else {
+                                table.style.display = "none";
+                                objTitle.style.display = "none";
+                            }
+                        }
+                    }
+                };
+            </script>
+</head>
+<body>
+<h1>Load Test Results</h1>
+<hr size="1">
+<h2>Summary</h2>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
+<tr valign="top">
+<th># Samples</th><th>Failures</th><th>Success Rate</th><th>Average Time</th><th>Min Time</th><th>Max Time</th><th>Median</th><th>90% Line</th><th>95% Line</th><th>99% Line</th><th>QPS/TPS</th><th>Throughput KB/Sec</th>
+</tr>
+<tr valign="top" class="">
+<td align="center">1</td><td align="center">0</td><td align="center">100.00%</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">1.04 /s</td><td align="center">19.72</td>
+</tr>
+</table>
+<hr align="center" width="95%" size="1">
+<h2>Pages</h2>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details" align="center">
+<tr valign="top">
+<th>URL</th><th># Samples</th><th>Failures</th><th>Success Rate</th><th>Average Time</th><th>Min Time</th><th>Max Time</th><th>Median</th><th>90% Line</th><th>95% Line</th><th>99% Line</th><th>QPS/TPS</th><th>Throughput KB/Sec</th><th></th>
+</tr>
+<tr valign="top" class="">
+<td>HTTP请求</td><td align="center">1</td><td align="center">0</td><td align="center">100.00%</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">962 ms</td><td align="center">1.04 /s</td><td align="center">19.72</td><td align="center"><a href="javascript:toggle_details('page_details_1')"><img alt="collapse" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEALQADQANam36RQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wDDQ0cLbeSRoIAAAL5dEVYdENvbW1lbnQATGljZW5zZWQgdG8gdGhlIEFwYWNoZSBTb2Z0d2FyZSBGb3VuZGF0aW9uIChBU0YpIHVuZGVyIG9uZSBvciBtb3JlCmNvbnRyaWJ1dG9yIGxpY2Vuc2UgYWdyZWVtZW50cy4gIFNlZSB0aGUgTk9USUNFIGZpbGUgZGlzdHJpYnV0ZWQgd2l0aAp0aGlzIHdvcmsgZm9yIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24gcmVnYXJkaW5nIGNvcHlyaWdodCBvd25lcnNoaXAuClRoZSBBU0YgbGljZW5zZXMgdGhpcyBmaWxlIHRvIFlvdSB1bmRlciB0aGUgQXBhY2hlIExpY2Vuc2UsIFZlcnNpb24gMi4wCih0aGUgIkxpY2Vuc2UiKTsgeW91IG1heSBub3QgdXNlIHRoaXMgZmlsZSBleGNlcHQgaW4gY29tcGxpYW5jZSB3aXRoCnRoZSBMaWNlbnNlLiAgWW91IG1heSBvYnRhaW4gYSBjb3B5IG9mIHRoZSBMaWNlbnNlIGF0CgogICBodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjAKClVubGVzcyByZXF1aXJlZCBieSBhcHBsaWNhYmxlIGxhdyBvciBhZ3JlZWQgdG8gaW4gd3JpdGluZywgc29mdHdhcmUKZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIExpY2Vuc2UgaXMgZGlzdHJpYnV0ZWQgb24gYW4gIkFTIElTIiBCQVNJUywKV0lUSE9VVCBXQVJSQU5USUVTIE9SIENPTkRJVElPTlMgT0YgQU5ZIEtJTkQsIGVpdGhlciBleHByZXNzIG9yIGltcGxpZWQuClNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmQKbGltaXRhdGlvbnMgdW5kZXIgdGhlIExpY2Vuc2UuhUUAtwAAADtJREFUOMtjVCtZ9p+BAsDEQCGgrQE3uyMZbnZHDmUvEAMYkaORkH9hQL10OY1cgC0W0G0c7rEwNL0AAJeCEpM4iWKGAAAAAElFTkSuQmCC" id="page_details_1_image"></a></td>
+</tr>
+<tr class="page_details" id="page_details_1">
+<td bgcolor="#FF0000" colspan="14">
+<div align="center">
+<b>Details for Page "HTTP请求"</b>
+<table width="95%" cellspacing="1" cellpadding="1" border="0" bgcolor="#2674A6" bordercolor="#000000">
+<tr>
+<th>Thread</th><th>Iteration</th><th>Time</th><th>Bytes</th><th>Success</th>
+</tr>
+<tr>
+<td align="center"><a href="javascript:toggle_detail('HTTP%E8%AF%B7%E6%B1%82_detail_1')">线程组 1-1</a></td><td align="center">1</td><td align="center">962 ms</td><td align="center">19427</td><td align="center">true</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<hr align="center" width="95%" size="1">
+<h2 id="tdetail">Details</h2>
+<table width="95%" cellspacing="2" cellpadding="5" border="0" class="details detail" align="center" id="HTTP请求_detail_1">
+<tr valign="top">
+<th colspan="2">HTTP请求 # 线程组 1-1</th>
+</tr>
+<tr>
+<td class="key">Time</td><td>962 ms</td>
+</tr>
+<tr>
+<td class="key">Latency</td><td>194 ms</td>
+</tr>
+<tr>
+<td class="key">Bytes</td><td>19427</td>
+</tr>
+<tr>
+<td class="key">Sample Count</td><td></td>
+</tr>
+<tr>
+<td class="key">Error Count</td><td></td>
+</tr>
+<tr>
+<td class="key">Response Code</td><td>200</td>
+</tr>
+<tr>
+<td class="key">Response Message</td><td>OK</td>
+</tr>
+<tr>
+<td class="key">Failure Message</td><td></td>
+</tr>
+<tr>
+<td class="key">Method/Url</td><td>GET https://www.cnblogs.com/UncleYong/</td>
+</tr>
+<tr>
+<td class="key">Query String</td><td></td>
+</tr>
+<tr>
+<td class="key">Cookies</td><td></td>
+</tr>
+<tr>
+<td class="key">Request Headers</td><td>Connection: keep-alive
+Host: www.cnblogs.com
+User-Agent: Apache-HttpClient/4.5.7 (Java/1.8.0_221)
+</td>
+</tr>
+<tr>
+<td class="key">Response Headers</td><td>HTTP/1.1 200 OK
+Date: Mon, 16 Sep 2019 05:47:12 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Cache-Control: public,max-age=10
+</td>
+</tr>
+<tr>
+<td class="key">Response Data</td><td>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-cn"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;meta name="referrer" content="origin" /&gt;
+    
+    &lt;meta http-equiv="Cache-Control" content="no-transform" /&gt;
+    &lt;meta http-equiv="Cache-Control" content="no-siteapp" /&gt;
+    &lt;title&gt;全栈测试笔记 - 博客园&lt;/title&gt;
+    
+    &lt;link rel="stylesheet" href="/css/blog-common.min.css?v=HrvK75b61-WJQPXtn_liCIWUC4EcnwT_lmrRbncieJo" /&gt;
+    &lt;link id="MainCss" rel="stylesheet" href="/skins/simplememory/bundle-simplememory.min.css?v=h-hNL0OecmJJJBSDulvE8iy08VWrYSL9CnbTmAQnC3Q" /&gt;
+    &lt;link type="text/css" rel="stylesheet" href="https://www.cnblogs.com/blog/customcss/305209.css?v=nqzDlI29XU7t8q1hdhvMdIoenwI=" /&gt;
+    &lt;link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/SimpleMemory/bundle-SimpleMemory-mobile.min.css" /&gt;
+    
+    &lt;link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/uncleyong/rss" /&gt;
+    &lt;link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/uncleyong/rsd.xml" /&gt;
+    &lt;link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/uncleyong/wlwmanifest.xml" /&gt;
+    &lt;script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"&gt;&lt;/script&gt;
+    &lt;script src="/js/blog-common.min.js?v=W8J2DYaUeAZPX2Lx1iRh00kAY9PXrT8UdrrPQB3gEXU"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        var currentBlogId = 305209;
+        var currentBlogApp = 'uncleyong';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    &lt;/script&gt;
+    
+    
+    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a name="top"&gt;&lt;/a&gt;
+    &lt;div id="page_begin_html"&gt;
+        &lt;!--火箭1&#13;
+&lt;link href="https://blog-static.cnblogs.com/files/uncleyong/huojian.css" rel="stylesheet"&gt;&#13;
+--&gt;&#13;
+&#13;
+&lt;!--火箭2--&gt;&#13;
+&lt;link href="https://blog-static.cnblogs.com/files/uncleyong/huojian2.css" rel="stylesheet"&gt;
+    &lt;/div&gt;
+    
+&lt;!--done--&gt;
+&lt;div id="home"&gt;
+&lt;div id="header"&gt;
+	&lt;div id="blogTitle"&gt;
+        &lt;a id="lnkBlogLogo" href="https://www.cnblogs.com/uncleyong/"&gt;&lt;img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /&gt;&lt;/a&gt;		
+		
+&lt;!--done--&gt;
+&lt;h1&gt;&lt;a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/uncleyong/"&gt;全栈测试笔记&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2&gt;
+&lt;span &gt;学习是一种修炼，总结是一种沉淀，分享是一种美德。&lt;b style="color: red;"&gt;关注公众号『全栈测试笔记』获取密码。&lt;/b&gt;&lt;br&gt;不吹虚的用不上的，只分享最通俗易懂、最高效实用的测试干货：性能、自动化、测开、安全。&lt;br&gt;&lt;b style="color: red;"&gt; &rarr; &rarr;&#13;
+ 路漫漫其修远兮，拒绝做个小菜鸡。&larr; &larr;&lt;/b&gt;&lt;/span&gt;
+&lt;/h2&gt;
+
+
+
+
+		
+	&lt;/div&gt;&lt;!--end: blogTitle 博客的标题和副标题 --&gt;
+	&lt;div id="navigator"&gt;
+		
+&lt;ul id="navList"&gt;
+&lt;li&gt;&lt;a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/"&gt;
+博客园&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/uncleyong/"&gt;
+首页&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1"&gt;
+新随笔&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0"&gt;
+联系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+
+&lt;!--&lt;partial name="./Shared/_XmlLink.cshtml" model="Model" /&gt;&lt;/li&gt;--&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/"&gt;
+管理&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+		&lt;div class="blogStats"&gt;
+			
+			&lt;span id="stats_post_count"&gt;随笔 - 
+226&amp;nbsp; &lt;/span&gt;
+&lt;span id="stats_article_count"&gt;文章 - 
+0&amp;nbsp; &lt;/span&gt;
+&lt;span id="stats-comment_count"&gt;评论 - 
+49&lt;/span&gt;
+
+			
+		&lt;/div&gt;&lt;!--end: blogStats --&gt;
+	&lt;/div&gt;&lt;!--end: navigator 博客导航栏 --&gt;
+&lt;/div&gt;&lt;!--end: header 头部 --&gt;
+
+&lt;div id="main"&gt;
+	&lt;div id="mainContent"&gt;
+	&lt;div class="forFlow"&gt;
+		
+&lt;!--done--&gt;
+
+
+
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/05/12.html"&gt;2019年5月12日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/10850791.html"&gt;
+[置顶]    6种自动化测试框架（总有一款适合你），关注公众号『全栈测试笔记』获取密码
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+该文被密码保护。    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-05-12 00:41 全栈测试笔记 阅读 (1764) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=10850791" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/05/08.html"&gt;2019年5月8日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/10836607.html"&gt;
+[置顶]    测试技术提升建议（必看）
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：去年年底开始，很多测试人员抱怨互联网寒冬来袭，抱怨找不到好工作，抱怨要求高，但是我发现，技术好的，找工作甚至找到非常不错的工作还是很轻松的。所以，还是要自身实力强，打铁还需自身硬。 测试招聘要求发展 2010年左右，测试招聘要求大概都是熟悉测试流程，熟悉用例设计方法。 2017年左右，测试招聘要求是            &lt;a href="https://www.cnblogs.com/uncleyong/p/10836607.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-05-08 23:26 全栈测试笔记 阅读 (4453) 评论 (9)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=10836607" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2016/08/09.html"&gt;2016年8月9日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/10530261.html"&gt;
+[置顶]    【自学目录】从测试小白到高级全栈测试修炼之路（自动化 、性能、测开、安全），持续更新中。。。欢迎关注公众号『全栈测试笔记』
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：欢迎关注微信公众号：全栈测试笔记 说明：以下内容均为本人工作及学习总结，分享给大家，抛砖引玉，共同进步。 》》》》》》 标红的为已经完成的，黑色点不动的是待完成的，加密的是草稿阶段。 自学测试路线推荐 测试技术提升建议：https://www.cnblogs.com/uncleyong/p/1083            &lt;a href="https://www.cnblogs.com/uncleyong/p/10530261.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2016-08-09 23:49 全栈测试笔记 阅读 (18139) 评论 (6)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=10530261" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/09/05.html"&gt;2019年9月5日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11475577.html"&gt;
+    jmeter引用jar包的3种方式
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：示例 实现对登录密码进行MD5加密 pom文件 java代码 方式一：把jar包加入到classpath beanshell脚本 请求的密码加密了 方式二：把jar包放到lib/ext下 请求的密码加密了 方式三：把jar包放到自定义目录下 如果是前面两种方式，肯能你会发现，不方便管理自己的jar包            &lt;a href="https://www.cnblogs.com/uncleyong/p/11475577.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-09-05 23:45 全栈测试笔记 阅读 (205) 评论 (2)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11475577" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/24.html"&gt;2019年8月24日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11401917.html"&gt;
+    关于如何学习的几点感悟
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：关于如何学习的几点感悟 1.明确进阶方向 2.制定学习计划、坚持学习计划 3.务必及时总结，写笔记，哪怕影响进度，一定停下来总结，否则，学得越多，之前学习的如果不用，忘记得越快，没有笔记，又得重学一次，肯定没看笔记快 4.多应用实践            &lt;a href="https://www.cnblogs.com/uncleyong/p/11401917.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-24 20:27 全栈测试笔记 阅读 (40) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11401917" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+            &lt;div class="postSeparator"&gt;&lt;/div&gt;
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11427749.html"&gt;
+    sql注入
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：            &lt;a href="https://www.cnblogs.com/uncleyong/p/11427749.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-24 09:13 全栈测试笔记 阅读 (45) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11427749" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/17.html"&gt;2019年8月17日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11375793.html"&gt;
+    vue在pycharm中代码标红，运行不报错
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：玩vue，如果用pycharm，出现代码标红，但运行不报错 改下面就可以了            &lt;a href="https://www.cnblogs.com/uncleyong/p/11375793.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-17 10:51 全栈测试笔记 阅读 (20) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11375793" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/14.html"&gt;2019年8月14日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11356236.html"&gt;
+    flask如何返回真正意义上的json字符串？以及中文如何正常显示？
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：flask中，不能直接return字典，需要把字典转换为json字符串方式有三种：1. return str(字典)2.return json.dumps(字典)3.return jsonify(字典)其中，dumps是json模块的方法，jsonify是flask封装的方法 虽然他们返回的都是js            &lt;a href="https://www.cnblogs.com/uncleyong/p/11356236.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-14 22:46 全栈测试笔记 阅读 (114) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11356236" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/13.html"&gt;2019年8月13日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11343821.html"&gt;
+    记录一次群答问：requests获取cookie
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：问题： 为了测试，写的sever，下面仅为set cookie的部分代码 测试 输出结果： &amp;lt;Response [200]&amp;gt;200{&amp;quot;code&amp;quot;:9420, &amp;quot;msg&amp;quot;:&amp;quot;恭喜qzcsbj，登录成功&amp;quot;,&amp;quot;token&amp;quot;:&amp;quot;970aa0ddb521bcde8ce7f1592a889e1c&amp;quot;}&amp;lt;Reque            &lt;a href="https://www.cnblogs.com/uncleyong/p/11343821.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-13 06:28 全栈测试笔记 阅读 (68) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11343821" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/05.html"&gt;2019年8月5日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11309729.html"&gt;
+    【笔试题】python文件操作
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：请说出下面代码结果及原因，很easy。 说明：test.txt文件不存在 输出结果及原因： 输出结果及原因： 输出结果及原因：            &lt;a href="https://www.cnblogs.com/uncleyong/p/11309729.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-05 22:13 全栈测试笔记 阅读 (213) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11309729" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/03.html"&gt;2019年8月3日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11381066.html"&gt;
+    JMeter5.1开发http协议接口之k-v脚本
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：get请求--jmeter：k-v 下载文件 响应结果 post请求--jmeter：k-v 登录请求 响应结果 post请求--jmeter：k-v，body中传token 请求（token放k-v中） 响应结果 成功入库 post请求--jmeter：k-v，body中传token 请求（tok            &lt;a href="https://www.cnblogs.com/uncleyong/p/11381066.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-03 09:27 全栈测试笔记 阅读 (76) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11381066" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/02.html"&gt;2019年8月2日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11289033.html"&gt;
+    【笔试题】面向对象小测试（二）
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：请参考下面代码，分别说出1-19题运行结果，及原因。 特别说明：__query2这个方法后面的所有方法上面都有装饰器， 博客里面没显示出来，是博客的bug吧，要选中才显示，最好复制出来看 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19            &lt;a href="https://www.cnblogs.com/uncleyong/p/11289033.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-02 00:54 全栈测试笔记 阅读 (123) 评论 (0)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11289033" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+		
+
+
+&lt;div class="day"&gt;
+    &lt;div class="dayTitle"&gt;
+        &lt;a href="https://www.cnblogs.com/uncleyong/archive/2019/08/01.html"&gt;2019年8月1日&lt;/a&gt;
+    &lt;/div&gt;
+
+        &lt;div class="postTitle"&gt;
+            
+
+&lt;a class="postTitle2" href="https://www.cnblogs.com/uncleyong/p/11283647.html"&gt;
+    【笔试题】面向对象小测试（一）
+&lt;/a&gt;
+
+        &lt;/div&gt;
+        &lt;div class="postCon"&gt;
+
+    &lt;div class="c_b_p_desc"&gt;
+摘要：没对象？没关系，new一个，赶紧来测试下自己new的技术如何吧。 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出上面代码结果及原因： 请直接说出            &lt;a href="https://www.cnblogs.com/uncleyong/p/11283647.html" class="c_b_p_desc_readmore"&gt;阅读全文&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;div class="postDesc"&gt;
+
+posted @ 2019-08-01 00:47 全栈测试笔记 阅读 (281) 评论 (2)
+&lt;a href="https://i.cnblogs.com/EditPosts.aspx?postid=11283647" rel="nofollow"&gt;
+    编辑
+&lt;/a&gt;
+&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class="topicListFooter"&gt;
+    &lt;div id="nav_next_page"&gt;
+        
+
+    &lt;a href="https://www.cnblogs.com/uncleyong/default.html?page=2"&gt;
+        下一页
+    &lt;/a&gt;
+
+    &lt;/div&gt;    
+&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+	&lt;/div&gt;&lt;!--end: forFlow --&gt;
+	&lt;/div&gt;&lt;!--end: mainContent 主体内容容器--&gt;
+
+	&lt;div id="sideBar"&gt;
+		&lt;div id="sideBarMain"&gt;
+			
+&lt;div id="sidebar_news" class="newsItem"&gt;
+            &lt;script&gt;loadBlogNews();&lt;/script&gt;
+&lt;/div&gt;
+
+			&lt;div id="blog-calendar" style="display:none"&gt;&lt;/div&gt;&lt;script&gt;loadBlogDefaultCalendar();&lt;/script&gt;
+			
+			&lt;div id="leftcontentcontainer"&gt;
+				&lt;div id="blog-sidecolumn"&gt;&lt;/div&gt;
+                    &lt;script&gt;loadBlogSideColumn();&lt;/script&gt;
+			&lt;/div&gt;
+			
+		&lt;/div&gt;&lt;!--end: sideBarMain --&gt;
+	&lt;/div&gt;&lt;!--end: sideBar 侧边栏容器 --&gt;
+	&lt;div class="clear"&gt;&lt;/div&gt;
+	&lt;/div&gt;&lt;!--end: main --&gt;
+	&lt;div class="clear"&gt;&lt;/div&gt;
+	&lt;div id="footer"&gt;
+		&lt;!--done--&gt;
+Copyright &amp;copy; 2019 全栈测试笔记
+&lt;br /&gt;&lt;span id="poweredby"&gt;Powered by .NET Core 3.0.0-preview9-19423-09 on Linux&lt;/span&gt;
+
+
+
+	&lt;/div&gt;&lt;!--end: footer --&gt;
+&lt;/div&gt;&lt;!--end: home 自定义的最大容器 --&gt;
+
+
+    
+&lt;/body&gt;
+&lt;/html&gt;
+</td>
+</tr>
+<tr>
+<td class="key">Response File</td><td></td>
+</tr>
+</table>
+</body>
+</html>

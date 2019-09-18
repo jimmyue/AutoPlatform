@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="2317" it="0" lt="2316" ct="2026" ts="1568616907608" s="true" lb="v2ex" rc="200" rm="OK" tn="线程组 1-1" dt="text" by="1545" sby="147" ng="1" na="1">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Date: Mon, 16 Sep 2019 06:55:09 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 750
+Connection: keep-alive
+Set-Cookie: __cfduid=d26899bed73443be6cca67c97b066b0ba1568616909; expires=Tue, 15-Sep-20 06:55:09 GMT; path=/; domain=.v2ex.com; HttpOnly; Secure
+Cache-Control: max-age=3600
+Cf-Railgun: 2833631f30 99.99 0.040144 0030 57da
+Etag: &quot;fccc1dbc0e03b946d678331d2eca9ebbd5dc2784&quot;
+Google: XY
+Vary: Accept-Encoding
+X-Frame-Options: sameorigin
+X-Rate-Limit-Limit: 120
+X-Rate-Limit-Remaining: 115
+X-Rate-Limit-Reset: 1568617200
+Strict-Transport-Security: max-age=15552000; includeSubDomains; preload
+Expect-CT: max-age=604800, report-uri=&quot;https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct&quot;
+Server: cloudflare
+CF-RAY: 5170eee60a0a7764-LAX
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Host: www.v2ex.com
+User-Agent: Apache-HttpClient/4.5.7 (Java/1.8.0_221)
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;avatar_large&quot;: &quot;//cdn.v2ex.com/navatar/8613/985e/90_large.png?m=1565780301&quot;, &quot;name&quot;: &quot;python&quot;, &quot;avatar_normal&quot;: &quot;//cdn.v2ex.com/navatar/8613/985e/90_normal.png?m=1565780301&quot;, &quot;title&quot;: &quot;Python&quot;, &quot;url&quot;: &quot;https://www.v2ex.com/go/python&quot;, &quot;topics&quot;: 12124, &quot;footer&quot;: &quot;&quot;, &quot;header&quot;: &quot;\u8fd9\u91cc\u8ba8\u8bba\u5404\u79cd Python \u8bed\u8a00\u7f16\u7a0b\u8bdd\u9898\uff0c\u4e5f\u5305\u62ec Django\uff0cTornado \u7b49\u6846\u67b6\u7684\u8ba8\u8bba\u3002\u8fd9\u91cc\u662f\u4e00\u4e2a\u80fd\u591f\u5e2e\u52a9\u4f60\u89e3\u51b3\u5b9e\u9645\u95ee\u9898\u7684\u5730\u65b9\u3002&quot;, &quot;title_alternative&quot;: &quot;Python&quot;, &quot;avatar_mini&quot;: &quot;//cdn.v2ex.com/navatar/8613/985e/90_mini.png?m=1565780301&quot;, &quot;stars&quot;: 8358, &quot;root&quot;: false, &quot;id&quot;: 90, &quot;parent_node_name&quot;: &quot;programming&quot;}</responseData>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.v2ex.com/api/nodes/show.json?name=python</java.net.URL>
+</httpSample>
+
+</testResults>

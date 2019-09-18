@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="0" it="0" lt="0" ct="0" ts="0" s="false" lb="" rc="Non HTTP response code: java.net.MalformedURLException" rm="Non HTTP response message: Illegal character found in host: &apos;/&apos;" tn="线程组 1-1" dt="text" by="834" sby="0" ng="1" na="1">
+  <responseHeader class="java.lang.String"></responseHeader>
+  <requestHeader class="java.lang.String"></requestHeader>
+  <responseData class="java.lang.String">java.net.MalformedURLException: Illegal character found in host: &apos;/&apos;&#xd;
+	at java.net.URL.&lt;init&gt;(URL.java:428)&#xd;
+	at java.net.URL.&lt;init&gt;(URL.java:311)&#xd;
+	at java.net.URL.&lt;init&gt;(URL.java:334)&#xd;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.getUrl(HTTPSamplerBase.java:1053)&#xd;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1231)&#xd;
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1220)&#xd;
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:622)&#xd;
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:546)&#xd;
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:486)&#xd;
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:253)&#xd;
+	at java.lang.Thread.run(Thread.java:748)&#xd;
+</responseData>
+  <cookies class="java.lang.String"></cookies>
+  <queryString class="java.lang.String"></queryString>
+  <null/>
+</httpSample>
+
+</testResults>
